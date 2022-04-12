@@ -1,10 +1,18 @@
 import React from 'react';
 import RegisterForm from '../components/Registerform'
+import { Title } from '../style';
+import { Box, Paper } from '@material-ui/core';
 
 function Register () {
   return <>
-      <h1>Register</h1>
-    <RegisterForm />
+  <Box px = {30} py = {5} color = 'primary'>
+    <Paper variant = 'outlined'>
+      <Title>
+        Register
+      </Title>
+      <RegisterForm />
+    </Paper>
+  </Box>
   </>;
 }
 
