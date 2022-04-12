@@ -10,7 +10,7 @@ function RegisterForm () {
   const navigate = useNavigate();
 
   const register = async () => {
-    await fetch('http://localhost:5005/admin/auth/register', {
+    const response = await fetch('http://localhost:5005/admin/auth/register', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -21,6 +21,8 @@ function RegisterForm () {
         name,
       })
     });
+    const data = await response.json();
+    localStorage.setItem('token', data.token);
     navigate('/Dashboard');
   }
 
