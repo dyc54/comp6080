@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, TextField } from '@material-ui/core';
-
+import { Button, Input, Box } from '@material-ui/core';
+import { InputTitle } from '../style';
 import { useNavigate } from 'react-router-dom';
 
 function RegisterForm () {
@@ -26,22 +26,31 @@ function RegisterForm () {
 
   return (
     <>
-      Email:<TextField
-        type = "text"
-        onChange={e => setEmail(e.target.value)}
-      /><br/>
+      <InputTitle>
+        Email:<Input
+          type = "text"
+          onChange={e => setEmail(e.target.value)}
+        /><br/>
+      </InputTitle>
 
-      Password:<TextField
+      <InputTitle>
+      Password:<Input
         type = "text"
         onChange={e => setPassword(e.target.value)}
       /><br/>
+      </InputTitle>
 
-      Name:<TextField
+      <InputTitle>
+      Name:<Input
         type = "text"
         onChange={e => setName(e.target.value)}
       /><br/><br/>
+      </InputTitle>
 
-      <Button variant = 'contained' color = 'primary' onClick={register}>Register</Button>
+      <Box textAlign = 'center'>
+        <Button variant = 'contained' color = 'primary' onClick={register}>Register</Button>
+      </Box><br/>
+
     </>
   )
 }
