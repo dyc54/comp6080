@@ -10,13 +10,13 @@ import {
 } from 'react-router-dom';
 
 import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
 
 function App () {
   return (
     <>
       <BrowserRouter>
-        <nav><Title>
+      <nav><Title>
           <Link to='/register'>
             Register
           </Link>| |
@@ -25,8 +25,8 @@ function App () {
           </Link>
         </Title></nav>
         <Routes>
-          <Route path='/register' element = {<Register />}/>
-          <Route path='/dashboard' element = {<Dashboard />}/>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </>
