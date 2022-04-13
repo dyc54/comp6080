@@ -24,7 +24,6 @@ function NavForm () {
           <div className={classes.root}>
               <Grid item xs={12}>
                   <Paper className={classes.paper} >
-                          <h2>BigBring</h2>
                           <Link to='/register'>
                               <Button variant="contained" color="primary">
                                   Create Game
@@ -44,7 +43,7 @@ function NavForm () {
         <div className={classes.root}>
             <Grid item xs={12}>
                 <Paper className={classes.paper} >
-                        <h2>BigBring</h2>
+                        <h1>BigBring</h1>
                         <Link to='/register'>
                             <Button variant="contained" color="primary">
                                 Register
