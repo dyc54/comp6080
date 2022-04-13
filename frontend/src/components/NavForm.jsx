@@ -31,7 +31,7 @@ function NavForm () {
                               </Button>
                           </Link>
                           <Link to='/logout'>
-                              <Button variant="contained" color="Default">
+                              <Button variant="contained" color="default">
                                   Logout
                               </Button>
                           </Link>
@@ -51,7 +51,7 @@ function NavForm () {
                             </Button>
                         </Link>
                         <Link to='/login'>
-                            <Button variant="contained" color="Default">
+                            <Button variant="contained" color="default">
                                 Login
                             </Button>
                         </Link>

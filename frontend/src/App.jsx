@@ -43,7 +43,7 @@ function App () {
                             </Button>
                         </Link>
                         <Link to='/login'>
-                            <Button variant="contained" color="Default">
+                            <Button variant="contained" color="default">
                                 Login
                             </Button>
                         </Link>
