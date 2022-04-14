@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Register () {
   const classes = useStyles();
+  document.getElementsByClassName('top_nav')[0].style.display = 'block'
   return <>
   <div className={classes.root}>
       <Grid item xs={12}>

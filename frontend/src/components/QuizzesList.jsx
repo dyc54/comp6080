@@ -24,8 +24,10 @@ function StorQuestions (quizzes) {
         },
         body: undefined,
       });
-      const data = await response.json();
-      localStorage.setItem('quizzesDetail', JSON.stringify(data));
+      if (response.status === 200) {
+        const data = await response.json();
+        localStorage.setItem('quizzesDetail', JSON.stringify(data));
+      }
     }
     questions();
   }
@@ -47,7 +49,11 @@ function QuizzesList () {
       quizzesList[n] = JSON.parse(quizzesList[n]);
       StorQuestions(quizzesList[n]);
       let quizzesDetail = localStorage.getItem('quizzesDetail');
-      console.log('333: ' + quizzesDetail.id)
+<<<<<<< frontend/src/components/QuizzesList.jsx
+      if (quizzesDetail === '{}') {
+        break;
+      }
+>>>>>>> frontend/src/components/QuizzesList.jsx
       quizzesDetail = JSON.parse(quizzesDetail);
       if (quizzesDetail.questions === '[]') {
         quizzesList[n].questionsNum = 0

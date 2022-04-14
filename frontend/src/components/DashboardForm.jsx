@@ -28,13 +28,13 @@ function DashboardForm () {
 
   return (
     <>
-    <Box p = {1}>
-      <a>Create a new game: </a>
-      <input type = 'text' placeholder='Name' onChange={e => setGameName(e.target.value)}></input>
-      <a> </a>
-      <Button variant='contained' color='primary' onClick={createGame}>Create</Button>
-    </Box>
-    <GetquizsForm />
+      <Box p={1}>
+        <a>Create a new game: </a>
+        <input type='text' placeholder='Name' onChange={e => setGameName(e.target.value)}></input>
+        <a> </a>
+        <Button variant='contained' color='primary' onClick={createGame}>Create</Button>
+      </Box>
+      <GetquizsForm />
     </>
   )
 }
