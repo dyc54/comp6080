@@ -1,6 +1,6 @@
 import React from 'react';
 import { Paper, Grid, makeStyles } from '@material-ui/core';
-import QuizzesList from './QuizzesList '
+import QuizzesList from './QuizzesList'
 
 const useStyles = makeStyles((theme) => ({
   root: {
