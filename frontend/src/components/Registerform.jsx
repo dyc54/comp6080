@@ -22,36 +22,42 @@ function RegisterForm () {
       })
     });
     const data = await response.json();
-    localStorage.setItem('token', data.token);
-    navigate('/Dashboard');
+    const status = response.status;
+    if (status === 200) {
+      localStorage.setItem('token', data.token);
+      navigate('/Dashboard');
+    } else {
+      navigate('/Register');
+      alert('Incorrect input parameters, please register or log in again')
+    }
   }
 
   return (
     <>
       <InputTitle>
         Email:<Input
-          type = "text"
+          type="text"
           onChange={e => setEmail(e.target.value)}
-        /><br/>
+        /><br />
       </InputTitle>
 
       <InputTitle>
-      Password:<Input
-        type = "text"
-        onChange={e => setPassword(e.target.value)}
-      /><br/>
+        Password:<Input
+          type="text"
+          onChange={e => setPassword(e.target.value)}
+        /><br />
       </InputTitle>
 
       <InputTitle>
-      Name:<Input
-        type = "text"
-        onChange={e => setName(e.target.value)}
-      /><br/><br/>
+        Name:<Input
+          type="text"
+          onChange={e => setName(e.target.value)}
+        /><br /><br />
       </InputTitle>
 
-      <Box textAlign = 'center'>
-        <Button variant = 'contained' color = 'primary' onClick={register}>Register</Button>
-      </Box><br/>
+      <Box textAlign='center'>
+        <Button variant='contained' color='primary' onClick={register}>Register</Button>
+      </Box><br />
 
     </>
   )

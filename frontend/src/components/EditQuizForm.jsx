@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Input } from '@material-ui/core';
 import { InputTitle } from '../style';
 import { useParams } from 'react-router-dom';
+import GetQuestionsForm from './GetQuestionsForm'
 
 function EditQuizForm () {
   const quizId = useParams().quizId;
@@ -16,11 +17,8 @@ function EditQuizForm () {
   const [name, setName] = React.useState('');
   const [thumbnail, setThumbnail] = React.useState('');
   const token = localStorage.getItem('token');
-  console.log('quizid = ' + quizId)
-  console.log('question = ' + question)
-  console.log('question = ' + thumbnail)
 
-  React.useEffect(() => {
+  /* React.useEffect(() => {
     fetch(`http://localhost:5005/admin/quiz/${quizId}`, {
       method: 'GET',
       headers: {
@@ -30,7 +28,22 @@ function EditQuizForm () {
       .then(data => {
         console.log('data = ' + data.questions[0].question)
       });
-  });
+  }); */
+  const questions = async () => {
+    const response = await fetch(`http://localhost:5005/admin/quiz/${quizId}`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: undefined,
+    });
+    if (response.status === 200) {
+      const data = await response.json();
+      localStorage.setItem('questions', JSON.stringify(data));
+    }
+  }
+  questions();
 
   const editquizName = async () => {
     await fetch(`http://localhost:5005/admin/quiz/${quizId}`, {
@@ -101,7 +114,7 @@ function EditQuizForm () {
         <Button variant = 'contained' color = 'primary' onClick={ editquizQuestion }>Add a new question</Button>
         <br/>
       </InputTitle>
-
+      <GetQuestionsForm />
     </>
   )
 }

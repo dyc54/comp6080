@@ -66,7 +66,7 @@ function QuizzesList () {
       <>
         {
           quizzesList.map(item => (
-            <div key={item.id} className={classes.root}>
+            <div key={item.createdAt} className={classes.root}>
               <Grid item xs={12}>
                 <Paper className={classes.paper} >
                   <h4>Title: {item.name}</h4>

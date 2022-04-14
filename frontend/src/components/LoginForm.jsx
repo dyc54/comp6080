@@ -9,20 +9,29 @@ function LoginForm () {
   const navigate = useNavigate();
 
   const register = async () => {
-    const response = await fetch('http://localhost:5005/admin/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      })
-    });
-
-    const data = await response.json();
-    localStorage.setItem('token', data.token);
-    navigate('/Dashboard');
+    try {
+      const response = await fetch('http://localhost:5005/admin/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        })
+      });
+      const data = await response.json();
+      const status = response.status;
+      if (status === 200) {
+        localStorage.setItem('token', data.token);
+        navigate('/Dashboard');
+      } else {
+        navigate('/Register');
+        alert('Incorrect input parameters, please register or log in again')
+      }
+    } catch (err) {
+      alert(err);
+    }
   }
 
   return (
