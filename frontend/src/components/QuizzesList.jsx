@@ -24,8 +24,10 @@ function StorQuestions (quizzes) {
         },
         body: undefined,
       });
-      const data = await response.json();
-      localStorage.setItem('quizzesDetail', JSON.stringify(data));
+      if (response.status === 200) {
+        const data = await response.json();
+        localStorage.setItem('quizzesDetail', JSON.stringify(data));
+      }
     }
     questions();
   }
@@ -35,11 +37,9 @@ function QuizzesList () {
   const classes = useStyles();
   const token = localStorage.getItem('token');
   let quizzes = localStorage.getItem('quizzes');
-  console.log('quizzes: ' + quizzes);
   if (token !== 'undefined' && quizzes !== '[]') {
     quizzes = quizzes.slice(1, -1);
     const quizzesList = quizzes.split('},');
-    console.log('quizlist: ' + quizzes)
     for (let n = 0; n < quizzesList.length; n++) {
       if (n < quizzesList.length - 1) {
         quizzesList[n] = quizzesList[n] + '}';
@@ -47,13 +47,11 @@ function QuizzesList () {
       quizzesList[n] = JSON.parse(quizzesList[n]);
       StorQuestions(quizzesList[n]);
       let quizzesDetail = localStorage.getItem('quizzesDetail');
-      console.log('333: ' + quizzesDetail.id)
-      quizzesDetail = JSON.parse(quizzesDetail);
-      if (quizzesDetail.questions === '[]') {
-        quizzesList[n].questionsNum = 0
-      } else {
-        quizzesList[n].questionsNum = quizzesDetail.questions.length;
+      if (quizzesDetail === '{}') {
+        break;
       }
+      quizzesDetail = JSON.parse(quizzesDetail);
+      quizzesList[n].questionsNum = quizzesDetail.questions.length;
       quizzesList[n].questionsSumTime = 0;
     }
     return (

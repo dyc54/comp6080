@@ -16,15 +16,14 @@ const useStyles = makeStyles((theme) => ({
 function LogoutForm () {
   const token = localStorage.getItem('token');
   const register = async () => {
-    const response = await fetch('http://localhost:5005/admin/auth/logout', {
+    await fetch('http://localhost:5005/admin/auth/logout', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ token })
     });
-    const data = await response.json();
-    localStorage.setItem('token', data.token);
+    localStorage.setItem('token', 'undefined');
   }
   register();
   const classes = useStyles();

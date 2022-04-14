@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Paper, Grid, makeStyles } from '@material-ui/core';
 import QuizzesList from './QuizzesList '
 
@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
 function GetquizsForm () {
   const classes = useStyles();
   const token = localStorage.getItem('token');
+  const [state, setState] = useState(0);
   React.useEffect(() => {
     if (token !== 'undefined') {
       fetch('http://localhost:5005/admin/quiz', {
@@ -25,7 +26,7 @@ function GetquizsForm () {
         },
         body: undefined,
       }).then(response => response.json())
-        .then(data => { localStorage.setItem('quizzes', JSON.stringify(data.quizzes)); })
+        .then(data => { localStorage.setItem('quizzes', JSON.stringify(data.quizzes)); setState(state + 1); })
     }
   });
 

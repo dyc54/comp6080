@@ -30,6 +30,8 @@ const useStyles = makeStyles((theme) => ({
 
 function App () {
   localStorage.setItem('token', 'undefined');
+  localStorage.setItem('quizzes', '[]');
+  localStorage.setItem('quizzesDetail', '{}');
   const classes = useStyles();
   return (
     <>

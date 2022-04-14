@@ -24,13 +24,8 @@ function NavForm () {
           <div className={classes.root}>
               <Grid item xs={12}>
                   <Paper className={classes.paper} >
-                          <Link to='/register'>
-                              <Button variant="contained" color="primary">
-                                  Create Game
-                              </Button>
-                          </Link>
                           <Link to='/logout'>
-                              <Button variant="contained" color="default">
+                              <Button variant="contained" color="primary">
                                   Logout
                               </Button>
                           </Link>
