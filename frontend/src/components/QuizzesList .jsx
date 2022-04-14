@@ -49,11 +49,11 @@ function QuizzesList () {
       quizzesList[n] = JSON.parse(quizzesList[n]);
       StorQuestions(quizzesList[n]);
       let quizzesDetail = localStorage.getItem('quizzesDetail');
-<<<<<<< frontend/src/components/QuizzesList.jsx
+      /*frontend/src/components/QuizzesList.jsx
       if (quizzesDetail === '{}') {
         break;
       }
->>>>>>> frontend/src/components/QuizzesList.jsx
+      */
       quizzesDetail = JSON.parse(quizzesDetail);
       if (quizzesDetail.questions === '[]') {
         quizzesList[n].questionsNum = 0
