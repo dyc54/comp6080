@@ -12,6 +12,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
 import Dashboard from './pages/Dashboard';
+import QuizEdit from './pages/EditQuiz';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -36,7 +37,7 @@ function App () {
       <div className={'top_nav'}>
             <Grid item xs={12}>
                 <Paper className={classes.paper} >
-                        <h2>BigBring</h2>
+                        <h2>BigBrain</h2>
                         <Link to='/register'>
                             <Button variant="contained" color="primary">
                                 Register
@@ -54,6 +55,7 @@ function App () {
           <Route path='/register' element = {<Register />}/>
           <Route path="/login" element={<Login />} />
           <Route path='/dashboard' element = {<Dashboard />}/>
+          <Route path='/quizedit/:quizId' element = {<QuizEdit />}/>
           <Route path="/logout" element={<Logout />} />
         </Routes>
       </BrowserRouter>
