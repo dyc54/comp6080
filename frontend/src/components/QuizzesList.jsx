@@ -11,7 +11,20 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
 }));
-
+/*
+function DeleteGame (id) {
+  const token = localStorage.getItem('token');
+  console.log(token)
+  fetch(`http://localhost:5005/admin/quiz/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: '{}'
+  });
+}
+*/
 function StorQuestions (quizzes) {
   const token = localStorage.getItem('token');
   if (token !== 'undefined' && quizzes !== '[]') {
@@ -76,11 +89,9 @@ function QuizzesList () {
                           Play
                       </Button>
                   </Link>
-                  <Link to='/logout'>
-                      <Button variant="contained" color="secondary">
-                          Delete
-                      </Button>
-                  </Link>
+                    <Button variant="contained" color="secondary" /* onClick = {DeleteGame(item.id)} */>
+                        Delete
+                    </Button>
                 </Paper>
               </Grid>
             </div>
