@@ -12,6 +12,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/*
+function DeleteQuestion (id) {
+  const token = localStorage.getItem('token');
+  console.log('1' + id)
+  fetch(`http://localhost:5005/admin/quiz/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      questions: [],
+    })
+  });
+}
+*/
+
 function GetQuestionsForm () {
   const classes = useStyles();
   let questionsList = [];
@@ -22,34 +39,32 @@ function GetQuestionsForm () {
     console.log(questionsList.questions)
 
     return (
-            <>
-                {
-                    questionsList.map(item => (
-                        <div key={item.questionId} className={classes.root}>
-                            <Grid item xs={12}>
-                                <Paper className={classes.paper} >
-                                    <h4>ID: {item.questionId}</h4>
-                                    <h4>Type of questions: {item.questionType}</h4>
-                                    <img src={item.thumbnail} alt="" />
-                                    <h4>Limit Time: {item.Limit}</h4>
-                                    <h4>Points: {item.Points}</h4>
-                                    <br />
-                                    <Link to={`/logout${item.id}`}>
-                                        <Button variant="contained" color="primary">
-                                            Edit
-                                        </Button>
-                                    </Link>
-                                    <Link to='/logout'>
-                                        <Button variant="contained" color="secondary">
-                                            Delete
-                                        </Button>
-                                    </Link>
-                                </Paper>
-                            </Grid>
-                        </div>
-                    ))
-                }
-            </>
+      <>
+        {
+          questionsList.map(item => (
+            <div key={item.questionId} className={classes.root}>
+              <Grid item xs={12}>
+                <Paper className={classes.paper} >
+                  <h4>ID: {item.questionId}</h4>
+                  <h4>Type of questions: {item.questionType}</h4>
+                  <img src={item.thumbnail} alt="" />
+                  <h4>Limit Time: {item.Limit}</h4>
+                  <h4>Points: {item.Points}</h4>
+                  <br />
+                  <Link to={`/logout${item.id}`}>
+                    <Button variant="contained" color="primary">
+                      Edit
+                    </Button>
+                  </Link>
+                    <Button variant="contained" color="secondary" /* onClick = { DeleteQuestion(item.id) } */>
+                      Delete
+                    </Button>
+                </Paper>
+              </Grid>
+            </div>
+          ))
+        }
+      </>
     )
   }
   return (

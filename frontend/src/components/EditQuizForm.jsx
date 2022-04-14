@@ -18,17 +18,6 @@ function EditQuizForm () {
   const [thumbnail, setThumbnail] = React.useState('');
   const token = localStorage.getItem('token');
 
-  /* React.useEffect(() => {
-    fetch(`http://localhost:5005/admin/quiz/${quizId}`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
-    }).then(response => response.json())
-      .then(data => {
-        console.log('data = ' + data.questions[0].question)
-      });
-  }); */
   const questions = async () => {
     const response = await fetch(`http://localhost:5005/admin/quiz/${quizId}`, {
       method: 'GET',
