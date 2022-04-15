@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Paper, Grid, makeStyles } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +30,7 @@ function DeleteQuestion (id) {
 */
 
 function GetQuestionsForm () {
+  const quizId = useParams().quizId;
   const classes = useStyles();
   let questionsList = [];
   const questions = localStorage.getItem('questions');
@@ -47,11 +48,12 @@ function GetQuestionsForm () {
                 <Paper className={classes.paper} >
                   <h4>ID: {item.questionId}</h4>
                   <h4>Type of questions: {item.questionType}</h4>
+                  <h4>Question content: {item.questionItself}</h4>
                   <img src={item.thumbnail} alt="" />
                   <h4>Limit Time: {item.Limit}</h4>
                   <h4>Points: {item.Points}</h4>
                   <br />
-                  <Link to={`/logout${item.id}`}>
+                  <Link to={`/quizedit/${quizId}/${item.questionId}`}>
                     <Button variant="contained" color="primary">
                       Edit
                     </Button>

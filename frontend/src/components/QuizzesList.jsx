@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 /*
-function DeleteGame (id) {
+const DeleteGame = async (id) => {
   const token = localStorage.getItem('token');
   console.log(token)
-  fetch(`http://localhost:5005/admin/quiz/${id}`, {
+  await fetch(`http://localhost:5005/admin/quiz/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-type': 'application/json',
@@ -25,6 +25,7 @@ function DeleteGame (id) {
   });
 }
 */
+
 function StorQuestions (quizzes) {
   const token = localStorage.getItem('token');
   if (token !== 'undefined' && quizzes !== '[]') {
@@ -89,9 +90,9 @@ function QuizzesList () {
                           Play
                       </Button>
                   </Link>
-                    <Button variant="contained" color="secondary" /* onClick = {DeleteGame(item.id)} */>
-                        Delete
-                    </Button>
+                  <Button variant="contained" color="secondary" /* onClick = { DeleteGame(item.id)} */>
+                      Delete
+                  </Button>
                 </Paper>
               </Grid>
             </div>
