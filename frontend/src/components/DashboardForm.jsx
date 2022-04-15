@@ -2,12 +2,12 @@ import React from 'react';
 import { Button, Box } from '@material-ui/core';
 import GetquizsForm from './GetquizsForm'
 
-function DashboardForm () {
+function DashboardForm (showState) {
   const token = localStorage.getItem('token');
   let name = ''
-  const [state, setState] = React.useState(0);
-  if (state === 0) {
-    setState(state + 1)
+  const [createState, setState] = React.useState(0);
+  if (createState === 0) {
+    setState(createState + 1)
   }
   const createGame = async () => {
     await fetch('http://localhost:5005/admin/quiz/new', {
@@ -18,7 +18,7 @@ function DashboardForm () {
       },
       body: JSON.stringify({ name }),
     });
-    setState(state + 1)
+    setState(createState + 1)
   };
 
   return (
@@ -29,7 +29,7 @@ function DashboardForm () {
         <a> </a>
         <Button variant='contained' color='primary' onClick={ e => { createGame(); } } >Create</Button>
       </Box>
-      <GetquizsForm />
+      <GetquizsForm createState = {createState} showState = {showState}/>
     </>
   )
 }

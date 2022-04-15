@@ -14,7 +14,7 @@ function EditQuestionForm () {
   const [answer3, setAnswer3] = React.useState('');
   const [answer4, setAnswer4] = React.useState('');
   const quizId = useParams().quizId;
-  const qId = useParams().questionId;
+  const qId = parseInt(useParams().questionId);
 
   const questions = async () => {
     const response = await fetch(`http://localhost:5005/admin/quiz/${quizId}`, {
@@ -248,6 +248,7 @@ function EditQuestionForm () {
         questionArray[n].Points = points
       }
     }
+    console.log(questionArray, qId)
     await fetch(`http://localhost:5005/admin/quiz/${quizId}`, {
       method: 'PUT',
       headers: {

@@ -24,7 +24,7 @@ function Dashboard () {
             <Paper variant = 'outlined'>
                 <Title>Dashboard
                 </Title>
-                <DashboardForm />
+                <DashboardForm/>
             </Paper>
         </Box>
       </Grid>
