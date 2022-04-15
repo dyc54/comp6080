@@ -13,6 +13,8 @@ function EditQuizForm () {
     questionType: 'single',
     Limit: '0',
     Points: '0',
+    Url: '',
+    Answers: [],
   }
   const [name, setName] = React.useState('');
   const [thumbnail, setThumbnail] = React.useState('');
