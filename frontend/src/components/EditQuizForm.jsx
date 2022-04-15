@@ -3,23 +3,23 @@ import { Button, Input } from '@material-ui/core';
 import { InputTitle } from '../style';
 import { useParams } from 'react-router-dom';
 import GetQuestionsForm from './GetQuestionsForm'
-
+const questionObjectList = []
 function EditQuizForm () {
-  const quizId = useParams().quizId;
   const [question, setQuestion] = React.useState('');
+  const quizId = useParams().quizId;
+  const [Id, setId] = React.useState(1);
   const questionObject = {
-    questionId: '1',
+    questionId: Id,
     questionItself: question,
     questionType: 'single',
     Limit: '0',
     Points: '0',
     Url: '',
-    Answers: [],
+    Answers: []
   }
   const [name, setName] = React.useState('');
   const [thumbnail, setThumbnail] = React.useState('');
   const token = localStorage.getItem('token');
-
   const questions = async () => {
     const response = await fetch(`http://localhost:5005/admin/quiz/${quizId}`, {
       method: 'GET',
@@ -63,6 +63,7 @@ function EditQuizForm () {
   }
 
   const editquizQuestion = async () => {
+    questionObjectList.push(questionObject);
     await fetch(`http://localhost:5005/admin/quiz/${quizId}`, {
       method: 'PUT',
       headers: {
@@ -70,9 +71,7 @@ function EditQuizForm () {
         Authorization: `Bearer ${token}`
       },
       body: JSON.stringify({
-        questions: [
-          questionObject
-        ],
+        questions: questionObjectList,
       })
     });
   }
@@ -84,7 +83,7 @@ function EditQuizForm () {
           type = "text"
           onChange={e => setName(e.target.value)}
         />
-        <Button variant='contained' color='primary' onClick = {editquizName}>Edit Name</Button>
+        <Button variant='contained' color='primary' onClick = {() => editquizName}>Edit Name</Button>
         <br/>
       </InputTitle>
 
@@ -93,7 +92,7 @@ function EditQuizForm () {
           type = "text"
           onChange={e => setThumbnail(e.target.value)}
         />
-        <Button variant='contained' color='primary' onClick = {editquizThumbnail}>Edit Thumbnail</Button>
+        <Button variant='contained' color='primary' onClick = { () => editquizThumbnail}>Edit Thumbnail</Button>
         <br/>
       </InputTitle>
 
@@ -102,10 +101,10 @@ function EditQuizForm () {
           type = "text"
           onChange={e => setQuestion(e.target.value)}
         />
-        <Button variant = 'contained' color = 'primary' onClick={ editquizQuestion }>Add a new question</Button>
+        <Button variant = 'contained' color = 'primary' onClick={ () => { editquizQuestion(); setId(Id + 1); } }>Add a new question</Button>
         <br/>
       </InputTitle>
-      <GetQuestionsForm />
+      <GetQuestionsForm Id={Id}/>
     </>
   )
 }

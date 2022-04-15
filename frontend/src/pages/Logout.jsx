@@ -29,6 +29,7 @@ function LogoutForm () {
       localStorage.setItem('token', 'undefined');
       localStorage.setItem('quizzes', '[]');
       localStorage.setItem('quizzesDetail', '{}');
+      localStorage.setItem('questions', '{}');
     }
   }
   register();
