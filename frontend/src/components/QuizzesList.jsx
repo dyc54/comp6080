@@ -108,7 +108,7 @@ function QuizzesList (createState) {
                       Edit
                     </Button>
                   </Link>
-                  <Link to='/logout'>
+                  <Link to={`/quizstart/${item.id}`}>
                     <Button variant="contained" color="default">
                       Play
                     </Button>

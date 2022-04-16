@@ -1,5 +1,9 @@
 import React from 'react';
 import './App.css';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 
 import {
   BrowserRouter,
@@ -14,10 +18,7 @@ import Logout from './pages/Logout';
 import Dashboard from './pages/Dashboard';
 import QuizEdit from './pages/EditQuiz';
 import QuestionEdit from './pages/EditQuestion';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
+import QuestionStart from './pages/StartQuestion';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,6 +59,7 @@ function App () {
           <Route path='/quizedit/:quizId' element = {<QuizEdit />}/>
           <Route path='/quizedit/:quizId/:questionId' element = {<QuestionEdit />}/>
           <Route path="/logout" element={<Logout />} />
+          <Route path='/quizstart/:quizId' element = {<QuestionStart />}/>
         </Routes>
       </BrowserRouter>
     </>
