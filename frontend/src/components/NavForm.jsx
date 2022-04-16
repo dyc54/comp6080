@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
 function NavForm () {
   const classes = useStyles();
   const token = localStorage.getItem('token');
-  document.getElementsByClassName('top_nav')[0].style.display = 'none';
   if (token !== 'undefined') {
     return (
           <div className={classes.root}>

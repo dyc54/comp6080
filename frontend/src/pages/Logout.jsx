@@ -1,7 +1,7 @@
 import React from 'react';
-import LoginForm from '../components/LoginForm'
+import { Paper, Grid, makeStyles, Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { Title } from '../style';
-import { Box, Paper, Grid, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,24 +29,34 @@ function LogoutForm () {
       localStorage.setItem('token', 'undefined');
       localStorage.setItem('quizzes', '[]');
       localStorage.setItem('quizzesDetail', '{}');
-      localStorage.setItem('questions', '{}');
     }
   }
   register();
   const classes = useStyles();
   return (
     <>
-      <div className={classes.root}>
-        <Grid item xs={12}>
-          <Box color='primary'>
-            <Paper variant='outlined'>
-              <Title>Login
-              </Title>
-              <LoginForm />
-            </Paper>
-          </Box>
-        </Grid>
+      <div className={'top_nav'}>
+      <Grid item xs={12}>
+          <Paper className={classes.paper} >
+                  <h2>BigBrain</h2>
+                  <Link to='/register'>
+                      <Button variant="contained" color="primary">
+                          Register
+                      </Button>
+                  </Link>
+                  <Link to='/login'>
+                      <Button variant="contained" color="default">
+                          Login
+                      </Button>
+                  </Link>
+              </Paper>
+      </Grid>
       </div>
+      <div className={classes.root}>
+    <Paper variant = 'outlined'>
+        <Title className={'welcome'}>You have logged out!</Title>
+    </Paper>
+  </div>
     </>
   );
 }

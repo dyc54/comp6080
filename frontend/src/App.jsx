@@ -1,15 +1,10 @@
 import React from 'react';
 import './App.css';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 
 import {
   BrowserRouter,
   Routes,
   Route,
-  Link,
 } from 'react-router-dom';
 
 import Register from './pages/Register';
@@ -19,40 +14,15 @@ import Dashboard from './pages/Dashboard';
 import QuizEdit from './pages/EditQuiz';
 import QuestionEdit from './pages/EditQuestion';
 import QuestionStart from './pages/StartQuestion';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-  },
-}));
+import GameResult from './pages/GameResult';
+import Default from './pages/Default';
 
 function App () {
-  const classes = useStyles();
   return (
     <>
       <BrowserRouter>
-      <div className={'top_nav'}>
-            <Grid item xs={12}>
-                <Paper className={classes.paper} >
-                        <h2>BigBrain</h2>
-                        <Link to='/register'>
-                            <Button variant="contained" color="primary">
-                                Register
-                            </Button>
-                        </Link>
-                        <Link to='/login'>
-                            <Button variant="contained" color="default">
-                                Login
-                            </Button>
-                        </Link>
-                    </Paper>
-            </Grid>
-        </div>
         <Routes>
+          <Route path='/' element = {<Default />}/>
           <Route path='/register' element = {<Register />}/>
           <Route path="/login" element={<Login />} />
           <Route path='/dashboard' element = {<Dashboard />}/>
@@ -60,6 +30,7 @@ function App () {
           <Route path='/quizedit/:quizId/:questionId' element = {<QuestionEdit />}/>
           <Route path="/logout" element={<Logout />} />
           <Route path='/quizstart/:quizId' element = {<QuestionStart />}/>
+          <Route path='/gameresult/:sessionId' element = {<GameResult />}/>
         </Routes>
       </BrowserRouter>
     </>
