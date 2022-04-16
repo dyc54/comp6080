@@ -18,6 +18,7 @@ function StartQuestionForm (state) {
   const quizId = useParams().quizId;
   const token = localStorage.getItem('token');
   const [SIDstate, setSIDState] = React.useState(0)
+  const [ENDstate, setENDDState] = React.useState(0)
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -31,7 +32,7 @@ function StartQuestionForm (state) {
         body: undefined,
       }).then(response => response.json()).then(data => localStorage.setItem('quizzes', JSON.stringify(data.quizzes))).then(setSIDState(SIDstate + 1))
     }
-  }, [state]);
+  }, [state, ENDstate]);
 
   const EndQuestion = async () => {
     await fetch(`http://localhost:5005/admin/quiz/${quizId}/end`, {
@@ -42,6 +43,7 @@ function StartQuestionForm (state) {
       },
       body: undefined,
     });
+    setENDDState(ENDstate + 1);
     const sID = localStorage.getItem('sessionId')
     navigate(`/gameresult/${sID}`)
   }
@@ -54,6 +56,8 @@ function StartQuestionForm (state) {
                 <Button variant="contained" color="secondary" onClick = {() => EndQuestion() }>
                     END GAME
                 </Button>
+                <br />
+                <br />
                 <AlertSessionIDForm SIDstate={SIDstate} />
             </Paper>
         </Box>

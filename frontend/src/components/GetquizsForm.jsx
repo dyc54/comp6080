@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function GetquizsForm (createState) {
+function GetquizsForm () {
   const classes = useStyles();
   const token = localStorage.getItem('token');
   React.useEffect(() => {
@@ -34,7 +34,7 @@ function GetquizsForm (createState) {
     <div className={classes.root}>
               <Grid item xs={12}>
                   <Paper className={classes.paper} >
-                  <QuizzesList createState = {createState}/>
+                  <QuizzesList/>
                       </Paper>
               </Grid>
           </div>

@@ -11,9 +11,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Updataquize (token) {
+const Updataquize = async (token) => {
   if (token !== 'undefined') {
-    fetch('http://localhost:5005/admin/quiz', {
+    await fetch('http://localhost:5005/admin/quiz', {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -45,53 +45,56 @@ function StorQuestions (question) {
   }
 }
 
-function QuizzesList (createState) {
+function QuizzesList (createState, StoreState) {
   const [newQuizzesList, setPosts] = React.useState([]);
-  const [state, setState] = React.useState([]);
-  const setTextList = () => {
-    const lists = state.concat();
-    lists.splice(-1, 0, 'update');
-    setState(lists);
+  const [state, setState] = React.useState(0);
+  const [DeleteState, setDeleteState] = React.useState(0);
+  const token = localStorage.getItem('token');
+
+  const DeleteGame = async (id) => {
+    try {
+      await fetch(`http://localhost:5005/admin/quiz/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: undefined,
+      }).then(response => response.json()).then(Updataquize(token)).then(setDeleteState(DeleteState + 1))
+    } catch (err) {
+      console.log(err)
+    }
   }
 
-  function DeleteGame (id) {
-    const token = localStorage.getItem('token');
-    fetch(`http://localhost:5005/admin/quiz/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: undefined,
-    }).then(response => response.json()).then(Updataquize(token)).then(setTextList())
-  }
   React.useEffect(() => {
     let quizzes = localStorage.getItem('quizzes');
-    const token = localStorage.getItem('token');
-    if (token !== 'undefined' && quizzes !== '[]') {
-      quizzes = quizzes.slice(1, -1);
-      const quizzesList = quizzes.split('},');
-      for (let n = 0; n < quizzesList.length; n++) {
-        if (n < quizzesList.length - 1) {
-          quizzesList[n] = quizzesList[n] + '}';
+    if (quizzes !== '[1]') {
+      let quizzesList = [];
+      if (quizzes !== '[]') {
+        quizzes = quizzes.slice(1, -1);
+        quizzesList = quizzes.split('},');
+        for (let n = 0; n < quizzesList.length; n++) {
+          if (n < quizzesList.length - 1) {
+            quizzesList[n] = quizzesList[n] + '}';
+          }
+          quizzesList[n] = JSON.parse(quizzesList[n]);
+          StorQuestions(quizzesList[n]);
+          let quizzesDetail = localStorage.getItem('quizzesDetail');
+          if (quizzesDetail === '{}') {
+            break;
+          }
+          quizzesDetail = JSON.parse(quizzesDetail);
+          quizzesList[n].questionsNum = quizzesDetail.questions.length;
+          quizzesList[n].questionsSumTime = 0;
         }
-        quizzesList[n] = JSON.parse(quizzesList[n]);
-        StorQuestions(quizzesList[n]);
-        let quizzesDetail = localStorage.getItem('quizzesDetail');
-        if (quizzesDetail === '{}') {
-          break;
-        }
-        quizzesDetail = JSON.parse(quizzesDetail);
-        quizzesList[n].questionsNum = quizzesDetail.questions.length;
-        quizzesList[n].questionsSumTime = 0;
       }
       setPosts(quizzesList);
+    } else {
+      setState(state + 1)
     }
-  }, [state, createState]);
+  }, [state]);
   const classes = useStyles();
-  const token = localStorage.getItem('token');
-  if (token !== 'undefined' && newQuizzesList !== []) {
-    return (
+  return (
       <>
         {
           newQuizzesList.map(item => (
@@ -122,12 +125,6 @@ function QuizzesList (createState) {
           ))
         }
       </>
-    )
-  }
-  return (
-    <>
-      <h3>Please create a new game</h3>
-    </>
   )
 }
 export default QuizzesList;
