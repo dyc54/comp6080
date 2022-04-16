@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Button, Paper, Grid, makeStyles } from '@material-ui/core';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import AlertSessionIDForm from './AlertSessionIDForm'
 
 const useStyles = makeStyles((theme) => ({
@@ -18,6 +18,8 @@ function StartQuestionForm (state) {
   const quizId = useParams().quizId;
   const token = localStorage.getItem('token');
   const [SIDstate, setSIDState] = React.useState(0)
+  const navigate = useNavigate();
+
   React.useEffect(() => {
     if (token !== 'undefined') {
       fetch('http://localhost:5005/admin/quiz', {
@@ -40,6 +42,8 @@ function StartQuestionForm (state) {
       },
       body: undefined,
     });
+    const sID = localStorage.getItem('sessionId')
+    navigate(`/gameresult/${sID}`)
   }
 
   return <>

@@ -8,7 +8,7 @@ function LoginForm () {
   const [password, setPassword] = React.useState('');
   const navigate = useNavigate();
 
-  const register = async () => {
+  const login = async () => {
     try {
       const response = await fetch('http://localhost:5005/admin/auth/login', {
         method: 'POST',
@@ -51,7 +51,7 @@ function LoginForm () {
       </InputTitle>
 
       <Box textAlign='center'>
-        <Button variant='contained' color='primary' onClick={register}>Login</Button>
+        <Button variant='contained' color='primary' onClick={login}>Login</Button>
       </Box><br />
 
     </>

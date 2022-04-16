@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Input, Select, MenuItem, Checkbox } from '@material-ui/core';
+import { Button, Input, Select, MenuItem, Checkbox, Box } from '@material-ui/core';
 import { InputTitle } from '../style';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function EditQuestionForm () {
   const token = localStorage.getItem('token');
@@ -15,6 +15,11 @@ function EditQuestionForm () {
   const [answer4, setAnswer4] = React.useState('');
   const quizId = useParams().quizId;
   const qId = parseInt(useParams().questionId);
+  const navigate = useNavigate();
+
+  const goEditQuiz = async () => {
+    navigate(`/quizedit/${quizId}`)
+  }
 
   const questions = async () => {
     const response = await fetch(`http://localhost:5005/admin/quiz/${quizId}`, {
@@ -374,6 +379,9 @@ function EditQuestionForm () {
         <Button variant='contained' color='inherit' onClick = {EditQuestionAnswer4}>Save</Button>
         <br/>
       </InputTitle>
+      <Box textAlign='right' margin={1}>
+        <Button variant='contained' color='primary' onClick={goEditQuiz}>Back to Edit Game Page</Button>
+      </Box><br />
     </>
   )
 }

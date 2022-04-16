@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Input } from '@material-ui/core';
+import { Button, Input, Box } from '@material-ui/core';
 import { InputTitle } from '../style';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import GetQuestionsForm from './GetQuestionsForm'
 const questionObjectList = []
 function EditQuizForm () {
@@ -20,6 +20,11 @@ function EditQuizForm () {
   const [name, setName] = React.useState('');
   const [thumbnail, setThumbnail] = React.useState('');
   const token = localStorage.getItem('token');
+  const navigate = useNavigate();
+  const goDashboard = async () => {
+    navigate('/dashboard')
+  }
+
   const questions = async () => {
     const response = await fetch(`http://localhost:5005/admin/quiz/${quizId}`, {
       method: 'GET',
@@ -105,6 +110,10 @@ function EditQuizForm () {
         <br/>
       </InputTitle>
       <GetQuestionsForm Id={Id}/>
+      <Box textAlign='right' margin={1}>
+        <Button variant='contained' color='primary' onClick={ goDashboard }>Back to Dashboard</Button>
+      </Box><br />
+
     </>
   )
 }
