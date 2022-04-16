@@ -1,6 +1,7 @@
 import React from 'react';
 import { Popper, makeStyles, Button } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
+import copy from 'copy-to-clipboard';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +44,7 @@ function AlertSessionIDForm (SIDstate) {
             setS(S + 1)
           } else {
             setSID(quizzesList[n].active);
-            localStorage.setItem('sessionId', JSON.stringify(quizzesList[n].active));
+            localStorage.setItem('sessionid', JSON.stringify(quizzesList[n].active));
           }
         }
       }
@@ -57,6 +58,9 @@ function AlertSessionIDForm (SIDstate) {
       </Button>
       <Popper id={id} open={open} anchorEl={anchorEl}>
         <div className={classes.paper}>{SID}</div>
+        <Button variant="contained" color="primary" aria-describedby={id} onClick={() => copy(SID)}>
+        copy
+      </Button>
       </Popper>
     </div>
   </>;

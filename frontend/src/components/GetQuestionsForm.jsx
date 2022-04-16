@@ -49,14 +49,15 @@ function GetQuestionsForm (Id) {
   }
   function DeleteQuestion (id, questionsList, questionId) {
     const token = localStorage.getItem('token');
-    const questionsListT = questionsList;
-    let n = 0
-    for (n = 0; n < questionsList.length - 1; n++) {
-      if (questionsList[n].questionId === questionId) {
-        break
+    let questionsListT = [];
+
+    for (let n = 0; n < questionsList.length; n++) {
+      if (questionsList[n].questionId !== questionId) {
+        questionsListT.push(questionsList[n])
       }
     }
-    for (let i = n, len = questionsList.length - 1; i < len; i++) {
+    console.log(questionsListT)
+    /* for (let i = n, len = questionsList.length - 1; i < len; i++) {
       questionsList[i] = questionsList[i + 1];
       questionsList.length = len;
     }
@@ -66,8 +67,11 @@ function GetQuestionsForm (Id) {
     if (questionId === 1) {
       questionsListT.splice(0, 1);
       questionsList = questionsListT;
+    } */
+    if (questionsList.length === 1) {
+      questionsListT = [];
     }
-    questionsList = ClearNullArr(questionsList);
+    questionsListT = ClearNullArr(questionsListT);
     fetch(`http://localhost:5005/admin/quiz/${id}`, {
       method: 'PUT',
       headers: {
@@ -75,7 +79,7 @@ function GetQuestionsForm (Id) {
         Authorization: `Bearer ${token}`
       },
       body: JSON.stringify({
-        questions: questionsList,
+        questions: questionsListT,
       })
     }).then(UpdatQuestion(id, token)).then(setTextList())
   }

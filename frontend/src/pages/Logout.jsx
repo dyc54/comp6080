@@ -27,8 +27,10 @@ function LogoutForm () {
     if (status === 200) {
       document.getElementsByClassName('top_nav')[0].style.display = 'block';
       localStorage.setItem('token', 'undefined');
-      localStorage.setItem('quizzes', '[]');
+      localStorage.setItem('quizzes', '[1]');
       localStorage.setItem('quizzesDetail', '{}');
+      localStorage.setItem('questions', '{}');
+      localStorage.setItem('sessionid', 0);
     }
   }
   register();
