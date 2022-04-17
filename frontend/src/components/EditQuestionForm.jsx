@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button, Input, Select, MenuItem, Checkbox, Box } from '@material-ui/core';
 import { InputTitle } from '../style';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
+// Component
 function EditQuestionForm () {
+  // Constants
   const token = localStorage.getItem('token');
   const [question, setQuestion] = React.useState('');
   const [limit, setLimit] = React.useState('');
@@ -15,12 +17,8 @@ function EditQuestionForm () {
   const [answer4, setAnswer4] = React.useState('');
   const quizId = useParams().quizId;
   const qId = parseInt(useParams().questionId);
-  const navigate = useNavigate();
 
-  const goEditQuiz = async () => {
-    navigate(`/quizedit/${quizId}`)
-  }
-
+  // Getting the Question List
   const questions = async () => {
     const response = await fetch(`http://localhost:5005/admin/quiz/${quizId}`, {
       method: 'GET',
@@ -35,10 +33,15 @@ function EditQuestionForm () {
       localStorage.setItem('questions', JSON.stringify(data));
     }
   }
+
   questions();
 
   const questionList = localStorage.getItem('questions');
-  const questionArray = JSON.parse(questionList).questions
+  let questionArray = JSON.parse(questionList)
+  if (questionArray !== null) {
+    questionArray = questionArray.questions
+  }
+
   // Answer 1
   const EditQuestionAnswer1 = async () => {
     for (let n = 0; n < questionArray.length; n++) {
@@ -192,6 +195,8 @@ function EditQuestionForm () {
     });
     alert('Successfully saved')
   }
+
+  // Edit question's photo or video url
   const EditQuestionUrl = async () => {
     for (let n = 0; n < questionArray.length; n++) {
       if (questionArray[n].questionId === qId) {
@@ -211,6 +216,7 @@ function EditQuestionForm () {
     alert('Successfully attached')
   }
 
+  // Edit question type to single
   const EditQuestionTypeSingle = async () => {
     for (let n = 0; n < questionArray.length; n++) {
       if (questionArray[n].questionId === qId) {
@@ -229,6 +235,7 @@ function EditQuestionForm () {
     });
   }
 
+  // Edit question type to multiple
   const EditQuestionTypeMultiple = async () => {
     for (let n = 0; n < questionArray.length; n++) {
       if (questionArray[n].questionId === qId) {
@@ -247,6 +254,7 @@ function EditQuestionForm () {
     });
   }
 
+  // Edit question points
   const EditQuestionPoint = async () => {
     for (let n = 0; n < questionArray.length; n++) {
       if (questionArray[n].questionId === qId) {
@@ -267,6 +275,7 @@ function EditQuestionForm () {
     alert('Successfully edited!')
   }
 
+  // Edit question limit
   const EditQuestionLimit = async () => {
     for (let n = 0; n < questionArray.length; n++) {
       if (questionArray[n].questionId === qId) {
@@ -286,6 +295,7 @@ function EditQuestionForm () {
     alert('Successfully edited!')
   }
 
+  // Edit question content
   const EditQuestionName = async () => {
     for (let n = 0; n < questionArray.length; n++) {
       if (questionArray[n].questionId === qId) {
@@ -380,7 +390,9 @@ function EditQuestionForm () {
         <br/>
       </InputTitle>
       <Box textAlign='right' margin={1}>
-        <Button variant='contained' color='primary' onClick={goEditQuiz}>Back to Edit Game Page</Button>
+        <Link to= {`/quizedit/${quizId}`} >
+          <Button variant='contained' color='primary'>Back to Edit Game Page</Button>
+        </Link>
       </Box><br />
     </>
   )

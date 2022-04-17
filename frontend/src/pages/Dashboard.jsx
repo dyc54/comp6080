@@ -4,6 +4,7 @@ import NavForm from '../components/NavForm'
 import { Title } from '../style';
 import { Box, Paper, Grid, makeStyles } from '@material-ui/core';
 
+// style
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -14,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Component
 function Dashboard () {
   const classes = useStyles();
   return <>

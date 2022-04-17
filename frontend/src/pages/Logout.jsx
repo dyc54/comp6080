@@ -3,6 +3,7 @@ import { Paper, Grid, makeStyles, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { Title } from '../style';
 
+// style
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -13,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Component
 function LogoutForm () {
   const token = localStorage.getItem('token');
   const register = async () => {

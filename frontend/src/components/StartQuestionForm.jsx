@@ -3,6 +3,7 @@ import { Box, Button, Paper, Grid, makeStyles } from '@material-ui/core';
 import { useParams, useNavigate } from 'react-router-dom';
 import AlertSessionIDForm from './AlertSessionIDForm'
 
+// Style
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -13,7 +14,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Components
 function StartQuestionForm (state) {
+  // Constants
   const classes = useStyles();
   const quizId = useParams().quizId;
   const token = localStorage.getItem('token');
@@ -21,6 +24,7 @@ function StartQuestionForm (state) {
   const [ENDstate, setENDDState] = React.useState(0)
   const navigate = useNavigate();
 
+  // Get Session id state
   React.useEffect(() => {
     if (token !== 'undefined') {
       fetch('http://localhost:5005/admin/quiz', {
@@ -34,6 +38,7 @@ function StartQuestionForm (state) {
     }
   }, [state, ENDstate]);
 
+  // End question API
   const EndQuestion = async () => {
     await fetch(`http://localhost:5005/admin/quiz/${quizId}/end`, {
       method: 'POST',

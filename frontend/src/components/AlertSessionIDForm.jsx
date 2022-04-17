@@ -3,6 +3,7 @@ import { Popper, makeStyles, Button } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 import copy from 'copy-to-clipboard';
 
+// Style
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -12,7 +13,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
 }));
+
+// Component
 function AlertSessionIDForm (SIDstate) {
+  // initialise constants
   const quizId = useParams().quizId;
   const token = localStorage.getItem('token');
   const [SID, setSID] = React.useState(0)
@@ -27,6 +31,7 @@ function AlertSessionIDForm (SIDstate) {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
 
+  // Getting session id
   React.useEffect(() => {
     let quizzes = localStorage.getItem('quizzes');
     if (token !== 'undefined' && quizzes !== '[]') {

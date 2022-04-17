@@ -2,13 +2,17 @@ import React from 'react';
 import { Button, Box } from '@material-ui/core';
 import GetquizsForm from './GetquizsForm'
 
+// Component
 function DashboardForm () {
+  // Constants
   const token = localStorage.getItem('token');
   const [name, setname] = React.useState('');
   const [createState, setState] = React.useState(0);
   if (createState < 2) {
     setState(createState + 1)
   }
+
+  // Create Game
   const createGame = async () => {
     setState(createState + 1);
     try {

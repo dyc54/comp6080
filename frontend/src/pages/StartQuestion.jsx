@@ -4,6 +4,7 @@ import { Box, Paper, Grid, makeStyles } from '@material-ui/core';
 import StartQuestionForm from '../components/StartQuestionForm'
 import { useParams } from 'react-router-dom';
 
+// style
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -14,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Component
 function QuestionStart () {
   const classes = useStyles();
   const [state, setState] = React.useState(0)

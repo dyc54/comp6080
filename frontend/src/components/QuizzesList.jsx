@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Paper, Grid, makeStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+
+// Style
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -11,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Update quiz
 const Updataquize = async (token) => {
   if (token !== 'undefined') {
     await fetch('http://localhost:5005/admin/quiz', {
@@ -24,6 +27,7 @@ const Updataquize = async (token) => {
   }
 }
 
+// Store questions to local storage
 function StorQuestions (question) {
   const token = localStorage.getItem('token');
   if (token !== 'undefined' && question !== '[]') {
@@ -36,6 +40,7 @@ function StorQuestions (question) {
         },
         body: undefined,
       });
+      // If valid store questions
       if (response.status === 200) {
         const data = await response.json();
         localStorage.setItem('quizzesDetail', JSON.stringify(data));
@@ -45,12 +50,15 @@ function StorQuestions (question) {
   }
 }
 
+// Component
 function QuizzesList (createState, StoreState) {
+  // Constants
   const [newQuizzesList, setPosts] = React.useState([]);
   const [state, setState] = React.useState(0);
   const [DeleteState, setDeleteState] = React.useState(0);
   const token = localStorage.getItem('token');
 
+  // Delete a game API
   const DeleteGame = async (id) => {
     try {
       await fetch(`http://localhost:5005/admin/quiz/${id}`, {
@@ -66,6 +74,7 @@ function QuizzesList (createState, StoreState) {
     }
   }
 
+  // Get the quiz list
   React.useEffect(() => {
     let quizzes = localStorage.getItem('quizzes');
     if (quizzes !== '[1]') {

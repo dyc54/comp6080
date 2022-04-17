@@ -4,6 +4,7 @@ import { Title } from '../style';
 import { Box, Paper, Grid, makeStyles, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
+// style
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -14,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Component
 function Login () {
   const classes = useStyles();
   return <>

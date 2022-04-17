@@ -3,11 +3,14 @@ import { Button, Input, Box } from '@material-ui/core';
 import { InputTitle } from '../style';
 import { useNavigate } from 'react-router-dom';
 
+// Component
 function LoginForm () {
+  // Constants
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const navigate = useNavigate();
 
+  // Login API
   const login = async () => {
     try {
       const response = await fetch('http://localhost:5005/admin/auth/login', {
@@ -22,6 +25,7 @@ function LoginForm () {
       });
       const data = await response.json();
       const status = response.status;
+      // If token is valid go to dashborad, else go back to register
       if (status === 200) {
         localStorage.setItem('token', data.token);
         navigate('/Dashboard');

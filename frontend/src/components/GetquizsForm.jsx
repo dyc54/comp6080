@@ -2,6 +2,7 @@ import React from 'react';
 import { Paper, Grid, makeStyles } from '@material-ui/core';
 import QuizzesList from './QuizzesList'
 
+// Style
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -12,7 +13,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Component
 function GetquizsForm () {
+  // Constant
   const classes = useStyles();
   const token = localStorage.getItem('token');
   React.useEffect(() => {

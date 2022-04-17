@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
+// Style
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Component
 function NavForm () {
   const classes = useStyles();
   const token = localStorage.getItem('token');

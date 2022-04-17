@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Paper, Grid, makeStyles } from '@material-ui/core';
 import { Link, useParams } from 'react-router-dom';
 
+// Style
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -12,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Help function to clear null array
 function ClearNullArr (arr) {
   for (let i = 0, len = arr.length; i < len; i++) {
     if (!arr[i] || arr[i] === '' || arr[i] === undefined) {
@@ -23,6 +25,7 @@ function ClearNullArr (arr) {
   return arr;
 }
 
+// Update question list
 function UpdatQuestion (quizId, token) {
   if (token !== 'undefined') {
     fetch(`http://localhost:5005/admin/quiz/${quizId}`, {
@@ -36,7 +39,9 @@ function UpdatQuestion (quizId, token) {
   }
 }
 
+// Component
 function GetQuestionsForm (Id) {
+  // constants
   const quizId = useParams().quizId;
   const classes = useStyles();
   const [newQuestionsList, setPosts] = React.useState([]);
@@ -47,6 +52,8 @@ function GetQuestionsForm (Id) {
     lists.splice(-1, 0, 'update');
     setState(lists);
   }
+
+  // Delete a question
   function DeleteQuestion (id, questionsList, questionId) {
     const token = localStorage.getItem('token');
     let questionsListT = [];
