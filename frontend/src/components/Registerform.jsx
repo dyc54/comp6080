@@ -36,7 +36,7 @@ function RegisterForm () {
     <>
       <InputTitle>
         Email:<Input
-          type="text"
+          type="email"
           onChange={e => setEmail(e.target.value)}
         /><br />
       </InputTitle>
